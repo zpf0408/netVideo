@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.earlymorning.netvideo.dao.MenuMapper">
+    <resultMap id="menuMapper" type="cn.earlymorning.netvideo.beans.Menu">
+        <id column="menu_id" property="menuId"></id>
+        <result column="menu_name" property="menuName"></result>
+        <result column="url" property="url"></result>
+        <result column="pid" property="pid"></result>
+        <result column="hidden" property="hidden"></result>
+        <result column="icon" property="icon"></result>
+        <result column="menu_level" property="menuLevel"></result>
+        <result column="sort" property="sort"></result>
+    </resultMap>
+    <select id="getMenus">
+          SELECT menu_id menuId ,menu_name menuname,url,pid,hidden,icon,menu_level menulevel,sort
+          FROM TB_SYS_MENU
+    </select>
+    <select id="getMenuById" resultType="cn.earlymorning.netvideo.beans.Menu">
+          SELECT menu_id menuId ,menu_name menuname,url,pid,hidden,icon,menu_level menulevel,sort
+          FROM TB_SYS_MENU
+          WHERE id = #{id,jdbcType=INTEGER}
+    </select>
+    <update id="updMenu">
+
+    </update>
+    <insert id="addMenu">
+
+    </insert>
+    <delete id="delMenuById">
+
+    </delete>
+    <delete id="delMenus">
+
+    </delete>
+
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.earlymorning.netvideo.dao.CustomerMapper">
+    <resultMap id="customerMapper" type="cn.earlymorning.netvideo.beans.Customer">
+        <id column="id" property="id"></id>
+        <result column="address" property="address" />
+        <result column="birthday" property="birthday" />
+        <result column="company" property="company" />
+        <result column="create_date" property="createDate" />
+        <result column="email" property="email" />
+        <result column="error_count" property="errorCount" />
+        <result column="head_url" property="headUrl" />
+        <result column="interesting" property="interesting" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+
+        <result column="real_name" property="realName" />
+        <result column="sex" property="sex" />
+        <result column="telephone" property="telephone" />
+        <result column="ethnic" property="ethnic" />
+        <association property="profession" javaType="cn.earlymorning.netvideo.beans.Profession">
+            <id column="pro_id" property="proId"></id>
+            <result column="pro_name" property="proName"></result>
+            <result column="pro_descript" property="proDescript"></result>
+        </association>
+        <association property="role" javaType="cn.earlymorning.netvideo.beans.Role">
+            <id column="role_id" property="roleId"></id>
+            <result column="role_name" property="roleName"></result>
+            <result column="role_descript" property="roleDescript"></result>
+        </association>
+    </resultMap>
+    <select id="login" resultMap="customerMapper" resultType="cn.earlymorning.netvideo.beans.Customer">
+        SELECT c.id,c.telephone,c.name,c.real_name,c.sex,c.email,c.create_date,c.head_url,c.birthday,
+                c.address,c.interesting,p.pro_id,p.pro_name,p.pro_descript,p.pid,c.company,c.error_count,
+                r.role_id,r.role_name,r.role_descript
+        FROM TB_SYS_CUSTOMER c
+        LEFT JOIN TB_SYS_PROFESSION p
+        ON c.profession_Id = p.pro_id
+        LEFT JOIN TB_SYS_ROLE r
+        ON c.role_id = r.role_id
+        WHERE c.telephone = #{telephone} AND c.password = #{password}
+    </select>
+    <select id="getCustomerById" resultType="cn.earlymorning.netvideo.beans.Customer" resultMap="customerMapper">
+        SELECT c.id,c.telephone,c.name,c.real_name,c.sex,c.email,c.create_datete,c.head_url,c.birthday,
+                c.address,c.interesting,p.pro_id,p.pro_name,p.pro_descript,p.pid,c.company,c.error_count,
+                r.role_id ,r.role_name,r.role_descript
+        FROM TB_SYS_CUSTOMER c
+        LEFT JOIN TB_SYS_PROFESSION p
+        ON c.profession_Id = p.pro_id
+        LEFT JOIN TB_SYS_ROLE r
+        ON c.role_id = r.role_id
+        WHERE c.id = #{id}
+    </select>
+    <select id="getCustomerByTelephone" resultMap="customerMapper" resultType="cn.earlymorning.netvideo.beans.Customer">
+        SELECT c.id,c.telephone,c.name,c.real_name,c.sex,c.email,c.create_date,c.head_url,c.birthday,
+                c.address,c.interesting,c.ethnic,p.pro_id proId,p.pro_name proName,p.pro_descript proName,p.pid,c.company,c.error_count,
+                r.role_id ,r.role_name,r.role_descript
+        FROM TB_SYS_CUSTOMER c
+        LEFT JOIN TB_SYS_PROFESSION p
+        ON c.profession_Id = p.pro_id
+        LEFT JOIN TB_SYS_ROLE r
+        ON c.role_id = r.role_id
+        WHERE c.telephone = #{telephone}
+    </select>
+    <insert id="register" parameterType="cn.earlymorning.netvideo.beans.Customer" useGeneratedKeys="true" keyProperty="customer.id">
+        INSERT INTO TB_SYS_CUSTOMER(telephone,name,password,create_date,head_url) values(#{customer.telephone},#{customer.name},#{customer.password},#{customer.createDate},#{customer.headUrl} )
+    </insert>
+</mapper>

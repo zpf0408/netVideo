@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.earlymorning.netvideo.dao.FavoriteMapper">
+    <resultMap id="BaseResultMap" type="cn.earlymorning.netvideo.beans.Favorite">
+        <association property="course" javaType="cn.earlymorning.netvideo.beans.Course">
+            <id column="course_id" jdbcType="INTEGER" property="courseId" />
+            <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+            <result column="url" jdbcType="VARCHAR" property="url" />
+            <result column="source_url" jdbcType="VARCHAR" property="sourceUrl" />
+            <result column="course_descript" jdbcType="VARCHAR" property="courseDescript" />
+
+            <result column="create_id" jdbcType="INTEGER" property="createId" />
+            <result column="create_date"  property="createDate" />
+            <result column="course_level" jdbcType="INTEGER" property="courseLevel" />
+            <result column="sort" jdbcType="VARCHAR" property="sort" />
+            <result column="hidden" jdbcType="INTEGER" property="hidden" />
+            <result column="video_count" jdbcType="INTEGER" property="videoCount" />
+            <result column="learn_count" jdbcType="INTEGER" property="learningCount" />
+        </association>
+        <association property="customer" javaType="cn.earlymorning.netvideo.beans.Customer">
+            <id column="id" property="id"></id>
+            <result column="address" property="address" />
+            <result column="birthday" property="birthday" />
+            <result column="company" property="company" />
+            <result column="create_date" property="createDate" />
+            <result column="email" property="email" />
+            <result column="error_count" property="errorCount" />
+            <result column="head_url" property="headUrl" />
+            <result column="interesting" property="interesting" />
+            <result column="name" property="name" />
+            <result column="password" property="password" />
+
+            <result column="real_name" property="realName" />
+            <result column="sex" property="sex" />
+            <result column="telephone" property="telephone" />
+            <result column="ethnic" property="ethnic" />
+        </association>
+    </resultMap>
+    <sql id="course_customer_list">
+        co.course_id,
+	co.course_name,
+	co.url,
+	co.source_url,
+	co.course_descript,
+	co.course_type,
+	co.create_id,
+	co.create_date,
+	co.course_level,
+	co.sort,
+	co.hidden,
+	co.video_count,
+	cu.id,
+	cu.address,
+	cu.birthday,
+	cu.company,
+
+	cu.email,
+	cu.error_count,
+	cu.head_url,
+	cu.interesting,
+	cu.NAME,
+	cu.real_name,
+	cu.sex,
+	cu.telephone,
+	cu.ethnic
+    </sql>
+    <select id="getFavorites" resultMap="BaseResultMap">
+        SELECT
+          <include refid="course_customer_list"/>
+        FROM
+          TB_COURSE_FAVORITE fa
+          LEFT JOIN TB_SYS_COURSE co ON fa.course_id = co.course_id
+          LEFT JOIN TB_SYS_CUSTOMER cu ON fa.customer_id = cu.id
+        WHERE fa.customer_id = #{customerId}
+    </select>
+    <delete id="delFavorite" parameterType="cn.earlymorning.netvideo.beans.Favorite">
+        delete from TB_COURSE_FAVORITE
+        WHERE course_id = #{course.courseId} AND customer_id = #{customer.id}
+    </delete>
+    <select id="getFavoriteByPrimaryId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="course_customer_list"/>
+        FROM
+        TB_COURSE_FAVORITE fa
+        LEFT JOIN TB_SYS_COURSE co ON fa.course_id = co.course_id
+        LEFT JOIN TB_SYS_CUSTOMER cu ON fa.customer_id = cu.id
+        WHERE fa.customer_id = #{customer.id} AND fa.course_id = #{course.courseId}
+    </select>
+    <insert id="addFactory" parameterType="cn.earlymorning.netvideo.beans.Favorite" >
+        insert into TB_COURSE_FAVORITE (course_id,customer_id) value(#{course.courseId},#{customer.id})
+    </insert>
+</mapper>

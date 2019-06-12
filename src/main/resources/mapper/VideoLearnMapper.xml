@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.earlymorning.netvideo.dao.VideoLearnMapper">
+    <resultMap id="BaseRequestMap" type="cn.earlymorning.netvideo.beans.VideoLearn">
+        <result column="learn_time" property="learnTime" jdbcType="INTEGER"/>
+        <result column="is_watched" property="isWatched" />
+        <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+        <result column="learn_video_id" property="videoId" jdbcType="INTEGER"/>
+        <result column="customer_id" property="courseId" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Video_Learn_list">
+        customer_id,learn_time,is_watched,learn_video_id,course_id
+    </sql>
+    <select id="getVideolearns" resultMap="BaseRequestMap">
+      SELECT
+      <include refid="Video_Learn_list"/>
+      FROM TB_VIDEO_LEARN
+
+      WHERE course_id = #{courseId} AND customer_id = #{customerId}
+    </select>
+    <select id="getVideoLearn" resultMap="BaseRequestMap" >
+        SELECT
+        <include refid="Video_Learn_list"/>
+        FROM TB_Video_learn
+
+        where learn_video_id = #{videoId}  AND customer_id = #{customerId}
+    </select>
+    <insert id="insert">
+        INSERT INTO tb_video_learn(learn_video_id,customer_id,learn_time,is_watched,course_id) values(#{videoId} ,#{customerId},0,'1',${courseId}  )
+    </insert>
+
+</mapper>

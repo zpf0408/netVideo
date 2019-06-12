@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.earlymorning.netvideo.dao.WorkerNodeMapper">
+    <resultMap id="workerNodeMapper" type="cn.earlymorning.netvideo.beans.WorkerNode">
+        <id column="id" property="id"></id>
+        <result column="host_name" property="hostName"></result>
+        <result column="port" property="port"></result>
+        <result column="type" property="type"></result>
+        <result column="date" property="date"></result>
+        <result column="modified" property="modified"></result>
+        <result column="created" property="created"></result>
+    </resultMap>
+</mapper>
