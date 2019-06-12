@@ -8,7 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/base.jsp" %>
 <%
-    pageContext.setAttribute("APP_PATH", request.getContextPath());
+    pageContext.setAttribute("basePath", request.getContextPath());
 
 %>
 <!DOCTYPE html>
@@ -16,11 +16,11 @@
 <head>
     <meta charset="utf-8">
     <title>${course.courseName}课程</title>
-    <link rel="icon" href="${APP_PATH }/static/icons/favicon.ico" type="image/ico">
+    <link rel="icon" href="${basePath }/static/icons/favicon.ico" type="image/ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link href="${APP_PATH }/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${APP_PATH }/static/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="${APP_PATH }/static/css/style.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/style.min.css" rel="stylesheet">
     <style>
         /**
      * 图标示例样式(这里单独放页面中)
@@ -99,19 +99,19 @@
 
         <div class="navbar-header">
             &nbsp;&nbsp;&nbsp;
-            <img class="img-avatar img-avatar-48 m-r-10" src="${APP_PATH }/static/images/log2.jpg" alt=""/>
+            <img class="img-avatar img-avatar-48 m-r-10" src="${basePath }/static/images/log2.jpg" alt=""/>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="${APP_PATH }/course/index">首页</a></li>
-                <li><a href="${APP_PATH }/course/courseDisplay/0">全部</a></li>
+                <li><a href="${basePath }/course/index">首页</a></li>
+                <li><a href="${basePath }/course/courseDisplay/0">全部</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">分类
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <c:forEach items="${courseTypes}" var="vts">
-                            <li><a href="${APP_PATH }/course/courseDisplay/${vts.typeId}">${vts.typeName}</a></li>
+                            <li><a href="${basePath }/course/courseDisplay/${vts.typeId}">${vts.typeName}</a></li>
                         </c:forEach>
                     </ul>
                 </li>
@@ -126,17 +126,17 @@
                 <li class="dropdown dropdown-profile">
                     <a href="javascript:void(0)" data-toggle="dropdown">
                         <img class="img-avatar img-avatar-48 m-r-10"
-                             src="${APP_PATH }/static/images/users/${sessionScope.customer.headUrl}" alt=""/>
+                             src="${basePath }/static/images/users/${sessionScope.customer.headUrl}" alt=""/>
                         <span>${sessionScope.customer.name} <span class="caret"></span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="${APP_PATH }/course/learning"><i class="mdi mdi-account"></i> 个人中心</a></li>
-                        <li><a href="${APP_PATH }/customer/updCustomer"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
+                        <li><a href="${basePath }/course/learning"><i class="mdi mdi-account"></i> 个人中心</a></li>
+                        <li><a href="${basePath }/customer/updCustomer"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
                         </li>
-                        <li><a href="${APP_PATH }/course/learning"><i class="mdi mdi-comment-alert-outline"></i> 系统通知
+                        <li><a href="${basePath }/course/learning"><i class="mdi mdi-comment-alert-outline"></i> 系统通知
                             <span class="badge">4</span></a>
                         </li>
-                        <li><a href="${APP_PATH }/customer/logout"><i class="mdi mdi-logout-variant"></i> 退出登录</a></li>
+                        <li><a href="${basePath }/customer/logout"><i class="mdi mdi-logout-variant"></i> 退出登录</a></li>
                     </ul>
                 </li>
             </ul>
@@ -147,8 +147,8 @@
 </header>
 <div class="container">
     <ol class="breadcrumb breadcrumb-o">
-        <li><a href="${APP_PATH }/course/index">首页</a></li>
-        <li><a href="${APP_PATH }/course/courseDisplay/${course.courseType.typeId}">${course.courseType.typeName}</a>
+        <li><a href="${basePath }/course/index">首页</a></li>
+        <li><a href="${basePath }/course/courseDisplay/${course.courseType.typeId}">${course.courseType.typeName}</a>
         </li>
         <li><a href="javascript:void(0)">${course.courseName}</a></li>
 
@@ -158,7 +158,7 @@
             <div class="card-body" style="height: 180px;">
                 <div class="col-lg-3 col-md-3 text-right">
                     <a href="javascript:void(0)" class="thumbnail">
-                        <img src="${APP_PATH }/static/img/${course.url}" alt="...">
+                        <img src="${basePath }/static/img/${course.url}" alt="...">
                     </a>
                 </div>
                 <div class="col-lg-3 text-center" style="margin-top: 30px;">
@@ -180,7 +180,7 @@
                                                          data-placement="top" title="分享"></i></a></div>
                 </div>
                 <div class="col-lg-3 text-left mdi-verified" style="margin-top: 35px;">
-                    <button class="btn btn-w-md btn-round btn-primary" id="btn01" onclick="javascript:window.location.href='${basePath}/course/learn/${course.courseId}'">
+                    <button class="btn btn-w-md btn-round btn-primary" id="btn01" >
                         <c:choose>
                             <c:when test="${courseLearn==null}">
                                 加入学习
@@ -209,7 +209,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="video">
                         <c:forEach items="${videos}" var="video" varStatus="i">
-                            <a href="${APP_PATH }/video/${video.videoId}">
+                            <a href="${basePath }/video/${video.videoId}">
                                 <div class="row" style="height: 40px;">
                                     <div class="col-lg-1"></div>
 
@@ -283,13 +283,13 @@
 
 
 </body>
-<script type="text/javascript" src="${APP_PATH }/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/lightyear.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/bootstrap-notify.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/main.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/Chart.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/lightyear.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/main.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/Chart.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/search.js"></script>
 <script type="text/javascript">
 
@@ -299,7 +299,7 @@
             if($.isEmptyObject($.trim(cou))){
                 window.location.href="${basePath}/course/learn/${course.courseId}";
             }else{
-                window.location.href="${bathPath}/video/${videos.get(0).videoId}";
+                window.location.href="${basePath }/video/${videos.get(0).videoId}";
             }
         });
     })
@@ -308,7 +308,7 @@
         var courseId = "${course.courseId}";
         $.ajax({
             type:'post',
-            url:'${APP_PATH }/collect',
+            url:'${basePath }/collect',
             datatype:'json',
             contentType:"application/json;charset=utf-8",
             data:JSON.stringify({customer:{id:customerId},course:{courseId:courseId}}),

@@ -1,1 +1,15 @@
 # Created by .ignore support plugin (hsz.mobi)
+Commit Message
+.gitignore
+.idea/dataSources.local.xml
+.idea/dataSources/
+.idea/workspace.xml
+src/main/java/cn/earlymorning/netvideo/redis/
+src/main/resources/mybatis/
+src/main/resources/mysql/
+src/main/resources/oracle.Mapper/
+src/main/resources/redis/
+src/main/resources/spring/
+src/main/webapp/WEB-INF/page/menu/
+src/main/webapp/WEB-INF/page/profession/
+target/

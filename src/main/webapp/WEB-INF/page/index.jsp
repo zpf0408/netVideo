@@ -147,9 +147,6 @@
 
     <jsp:include page="include/copyRight.jsp" />
 </div>
-
-
-</body>
 <script type="text/javascript" src="${basePath }/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/perfect-scrollbar.min.js"></script>
@@ -158,5 +155,8 @@
 <script type="text/javascript" src="${basePath }/static/js/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/lightyear.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/search.js"></script>
+
+</body>
+
 
 </html>

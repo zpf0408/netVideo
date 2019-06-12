@@ -16,11 +16,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>课程管理</title>
-    <link rel="icon" href="${APP_PATH }/static/icons/favicon.ico" type="image/ico">
+    <link rel="icon" href="${basePath }/static/icons/favicon.ico" type="image/ico">
     <meta name="author" content="zpf">
-    <link href="${APP_PATH }/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${APP_PATH }/static/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="${APP_PATH }/static/css/style.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 
             <!-- logo -->
             <div id="logo" class="sidebar-header">
-                <a href="index.html"><img src="${APP_PATH }/static/images/htlog.png" title="LightYear" alt="LightYear" /></a>
+                <a href="index.html"><img src="${basePath }/static/images/htlog.png" title="LightYear" alt="LightYear" /></a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
 
@@ -101,7 +101,7 @@
                     <ul class="topbar-right">
                         <li class="dropdown dropdown-profile">
                             <a href="javascript:void(0)" data-toggle="dropdown">
-                                <img class="img-avatar img-avatar-48 m-r-10" src="${APP_PATH }/static/images/users/defaulthead.jpg" alt="" />
+                                <img class="img-avatar img-avatar-48 m-r-10" src="${basePath }/static/images/users/defaulthead.jpg" alt="" />
                                 <span> admin <span class="caret"></span></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
@@ -221,16 +221,16 @@
                                         <nav>
                                             <ul class="pagination pagination-circle">
                                                 <li class="${rowBounds.curPage==1?'disabled':null}">
-                                                    <a href="${APP_PATH }/course/list?page=${rowBounds.curPage-1}">
+                                                    <a href="${basePath }/course/list?page=${rowBounds.curPage-1}">
                                                         <span><i class="mdi mdi-chevron-left"></i></span>
                                                     </a>
                                                 </li>
                                                 <c:forEach begin="1" end="${rowBounds.pages}" var="page">
-                                                    <li class="${rowBounds.curPage==page?'active':null}"><a href="${APP_PATH }/course/list?page=${page}">${page}</a></li>
+                                                    <li class="${rowBounds.curPage==page?'active':null}"><a href="${basePath }/course/list?page=${page}">${page}</a></li>
                                                 </c:forEach>
 
                                                 <li class="${rowBounds.curPage==rowBounds.pages?'disabled':null}">
-                                                    <a href="${APP_PATH }/course/list?page=${rowBounds.curPage+1}">
+                                                    <a href="${basePath }/course/list?page=${rowBounds.curPage+1}">
                                                         <span><i class="mdi mdi-chevron-right"></i></span>
                                                     </a>
                                                 </li>
@@ -254,13 +254,13 @@
     </div>
 </div>
 
-<script type="text/javascript" src="${APP_PATH }/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/main.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/main.min.js"></script>
 
 <!--图表插件-->
-<script type="text/javascript" src="${APP_PATH }/static/js/Chart.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/Chart.js"></script>
 
 </body>
 </html>

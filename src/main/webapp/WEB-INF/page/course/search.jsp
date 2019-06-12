@@ -10,17 +10,17 @@
 <%@ include file="/WEB-INF/base.jsp" %>
 <html>
 <%
-    pageContext.setAttribute("APP_PATH", request.getContextPath());
+    pageContext.setAttribute("basePath", request.getContextPath());
 
 %>
 <head>
     <meta charset="utf-8">
     <title>课程列表</title>
-    <link rel="icon" href="${APP_PATH }/static/icons/favicon.ico" type="image/ico">
+    <link rel="icon" href="${basePath }/static/icons/favicon.ico" type="image/ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link href="${APP_PATH }/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${APP_PATH }/static/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="${APP_PATH }/static/css/style.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/style.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -29,18 +29,18 @@
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             &nbsp;&nbsp;&nbsp;
-            <img class="img-avatar img-avatar-48 m-r-10" src="${APP_PATH }/static/images/log2.jpg" alt="" />
+            <img class="img-avatar img-avatar-48 m-r-10" src="${basePath }/static/images/log2.jpg" alt="" />
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="${APP_PATH }/course/index">首页</a></li>
-                <li><a href="${APP_PATH }/course/courseDisplay/0">全部</a></li>
+                <li><a href="${basePath }/course/index">首页</a></li>
+                <li><a href="${basePath }/course/courseDisplay/0">全部</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <c:forEach items="${courseTypes}" var="vts">
-                            <li><a href="${APP_PATH }/course/courseDisplay/${vts.typeId}">${vts.typeName}</a></li>
+                            <li><a href="${basePath }/course/courseDisplay/${vts.typeId}">${vts.typeName}</a></li>
                         </c:forEach>
                     </ul>
                 </li>
@@ -55,15 +55,15 @@
 
                 <li class="dropdown dropdown-profile">
                     <a href="javascript:void(0)" data-toggle="dropdown">
-                        <img class="img-avatar img-avatar-48 m-r-10" src="${APP_PATH }/static/images/users/${sessionScope.customer.headUrl}" alt="" />
+                        <img class="img-avatar img-avatar-48 m-r-10" src="${basePath }/static/images/users/${sessionScope.customer.headUrl}" alt="" />
                         <span>${sessionScope.customer.name} <span class="caret"></span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li> <a href="${APP_PATH }/course/learning"><i class="mdi mdi-account"></i> 个人中心</a> </li>
-                        <li> <a href="${APP_PATH}/customer/updPassword"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
-                        <li> <a href="${APP_PATH }/course/learning"><i class="mdi mdi-comment-alert-outline"></i> 系统通知 <span class="badge">4</span></a>
+                        <li> <a href="${basePath }/course/learning"><i class="mdi mdi-account"></i> 个人中心</a> </li>
+                        <li> <a href="${basePath}/customer/updPassword"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
+                        <li> <a href="${basePath }/course/learning"><i class="mdi mdi-comment-alert-outline"></i> 系统通知 <span class="badge">4</span></a>
                         </li>
-                        <li> <a href="${APP_PATH }/customer/logout"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>
+                        <li> <a href="${basePath }/customer/logout"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>
                     </ul>
 
                 </li>
@@ -83,8 +83,8 @@
         <div class="row" style="margin: 10px 20px;">
             <c:forEach items="${courses}" var="course">
                 <div class="col-xs-6 col-md-3">
-                    <a href="${APP_PATH }/course/${course.courseId}" class="thumbnail">
-                        <img src="${APP_PATH }/static/img/${course.url}" alt="...">
+                    <a href="${basePath }/course/${course.courseId}" class="thumbnail">
+                        <img src="${basePath }/static/img/${course.url}" alt="...">
                         <h4>&nbsp;&nbsp;${course.courseName}</h4>
                     </a>
                 </div>
@@ -100,16 +100,16 @@
                     <nav>
                         <ul class="pagination pagination-circle">
                             <li class="${rowBounds.curPage==1?'disabled':null}">
-                                <a href="${APP_PATH }/course/search?q=${q}&page=${rowBounds.curPage-1}">
+                                <a href="${basePath }/course/search?q=${q}&page=${rowBounds.curPage-1}">
                                     <span><i class="mdi mdi-chevron-left"></i></span>
                                 </a>
                             </li>
                             <c:forEach begin="1" end="${rowBounds.pages}" var="page">
-                                <li class="${rowBounds.curPage==page?'active':null}"><a href="${APP_PATH }/course/search?q=${q}&page=${page}">${page}</a></li>
+                                <li class="${rowBounds.curPage==page?'active':null}"><a href="${basePath }/course/search?q=${q}&page=${page}">${page}</a></li>
                             </c:forEach>
 
                             <li class="${rowBounds.curPage==rowBounds.pages?'disabled':null}">
-                                <a href="${APP_PATH }/course/search?q=${q}&page=${rowBounds.curPage+1}">
+                                <a href="${basePath }/course/search?q=${q}&page=${rowBounds.curPage+1}">
                                     <span><i class="mdi mdi-chevron-right"></i></span>
                                 </a>
                             </li>
@@ -125,10 +125,12 @@
 
 
 </body>
-<script type="text/javascript" src="${APP_PATH }/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/main.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/Chart.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/main.min.js"></script>
+
+<script type="text/javascript" src="${basePath }/static/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/lightyear.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/search.js"></script>
 </html>
