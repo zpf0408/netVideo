@@ -11,7 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/base.jsp" %>
 <%
-    pageContext.setAttribute("APP_PATH", request.getContextPath());
+    pageContext.setAttribute("basePath", request.getContextPath());
 
 %>
 <!DOCTYPE html>
@@ -81,7 +81,7 @@
 
                 <li class="dropdown dropdown-profile">
                     <a href="javascript:void(0)" data-toggle="dropdown">
-                        <img class="img-avatar img-avatar-48 m-r-10" src="${APP_PATH }/static/images/users/${sessionScope.customer.headUrl}" alt="" />
+                        <img class="img-avatar img-avatar-48 m-r-10" src="${basePath }/static/images/users/${sessionScope.customer.headUrl}" alt="" />
                         <span>${sessionScope.customer.name} <span class="caret"></span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -108,21 +108,21 @@
                     <ul class="nav nav-drawer">
 
                         <li class="nav nav-subnav">
-                            <a href="${APP_PATH }/course/learning"><i class="mdi mdi-server"></i> 个人课程</a>
+                            <a href="${basePath }/course/learning"><i class="mdi mdi-server"></i> 个人课程</a>
                         </li>
                         <li class="nav nav-subnav active">
-                            <a href="${APP_PATH }/customer/personInfo"><i class="mdi mdi-account-card-details"></i> 个人信息</a>
+                            <a href="javascript:void(0)"><i class="mdi mdi-account-card-details"></i> 个人信息</a>
                         </li>
                         <li class="nav nav-subnav">
-                            <a href="${APP_PATH }/favorite"><i class="mdi mdi-file-outline"></i> 个人收藏</a>
+                            <a href="${basePath }/favorite"><i class="mdi mdi-file-outline"></i> 个人收藏</a>
 
                         </li>
                         <li class="nav nav-subnav">
-                            <a href="${APP_PATH}/course/favorite"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
+                            <a href="${basePath}/customer/updPassword"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
 
                         </li>
                         <li class="nav nav-subnav">
-                            <a href="${APP_PATH }/customer/personInfo"><i class="mdi mdi-currency-cny"></i> 会员中心</a>
+                            <a href="${basePath }/customer/personInfo"><i class="mdi mdi-currency-cny"></i> 会员中心</a>
 
                         </li>
                     </ul>

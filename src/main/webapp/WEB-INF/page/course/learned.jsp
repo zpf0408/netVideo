@@ -22,13 +22,6 @@
     <link href="${basePath }/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath }/static/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="${basePath }/static/css/style.min.css" rel="stylesheet">
-
-    <!--时间选择插件-->
-    <link rel="stylesheet" href="${basePath }/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
-    <!--日期选择插件-->
-    <link rel="stylesheet" href="${basePath }/static/js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
-
-
 </head>
 
 <body>
@@ -94,7 +87,7 @@
                     <ul class="nav nav-drawer">
 
                         <li class="nav nav-subnav active">
-                            <a href="${basePath }/course/learning"><i class="mdi mdi-server"></i> 个人课程</a>
+                            <a href="javascript:void(0)"><i class="mdi mdi-server"></i> 个人课程</a>
 
                         </li>
                         <li class="nav nav-subnav">
@@ -198,16 +191,7 @@
 <script type="text/javascript" src="${basePath }/static/js/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/lightyear.js"></script>
 
-<!--图表插件-->
-<script type="text/javascript" src="${basePath }/static/js/Chart.js"></script>
 
-
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datetimepicker/moment.min.js"></script>
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
-<!--日期选择插件-->
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/main.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/search.js"></script>
 <script type="text/javascript">

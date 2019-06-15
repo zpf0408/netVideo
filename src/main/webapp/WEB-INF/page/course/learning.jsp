@@ -23,13 +23,6 @@
     <link href="${basePath }/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath }/static/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="${basePath }/static/css/style.min.css" rel="stylesheet">
-
-    <!--时间选择插件-->
-    <link rel="stylesheet" href="${basePath }/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
-    <!--日期选择插件-->
-    <link rel="stylesheet" href="${basePath }/static/js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
-
-
 </head>
 
 <body>

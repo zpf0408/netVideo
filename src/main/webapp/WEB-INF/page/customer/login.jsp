@@ -14,16 +14,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>登录页面</title>
-    <%
-        pageContext.setAttribute("APP_PATH", request.getContextPath());
 
-    %>
-    <link rel="icon" href="${APP_PATH }/static/icons/favicon.ico" type="image/ico">
-    <link href="${APP_PATH }/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${APP_PATH }/static/css/materialdesignicons.min.css" rel="stylesheet">
+    <link rel="icon" href="${basePath }/static/icons/favicon.ico" type="image/ico">
+    <link href="${basePath }/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/materialdesignicons.min.css" rel="stylesheet">
 
-    <link href="${APP_PATH }/static/css/animate.css" rel="stylesheet">
-    <link href="${APP_PATH }/static/css/style.min.css" rel="stylesheet">
+    <link href="${basePath }/static/css/animate.css" rel="stylesheet">
+    <link href="${basePath }/static/css/style.min.css" rel="stylesheet">
     <style>
         .lyear-wrapper {
             position: relative;
@@ -68,10 +65,10 @@
     <div class="lyear-login">
         <div class="login-center" style="width: 460px">
             <div class="login-header text-center">
-                <a href="${APP_PATH }/video/index"> <img alt="light year admin" class="img-avatar img-avatar-48 m-r-10" src="${APP_PATH }/static/images/log2.jpg"> </a>
+                <a href="${basePath }/video/index"> <img alt="light year admin" class="img-avatar img-avatar-48 m-r-10" src="${basePath }/static/images/log2.jpg"> </a>
                 <font size="6">教学视频系统</font>
             </div>
-            <form action="${APP_PATH }/customer/login" method="post" id="form1" name="form1">
+            <form action="${basePath }/customer/login" method="post" id="form1" name="form1">
                 <div class="form-group has-feedback feedback-left">
                     <input type="text" placeholder="请输入您的手机号" class="form-control" value="${userName}" name="username" id="username" form="form1" />
                     <span class="mdi mdi-cellphone-iphone form-control-feedback" aria-hidden="true"></span>
@@ -92,7 +89,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-lg-12" style="text-align: right">
-                            <a href="${APP_PATH }/customer/retrievePwd">忘记密码?</a>
+                            <a href="${basePath }/customer/retrievePwd">忘记密码?</a>
                         </div>
                     </div>
                 </div>
@@ -108,10 +105,10 @@
                 </div>
                 <div class="form-group" >
                     <div class="col-lg-5 text-left">
-                        <a href="${APP_PATH }/customer/register">验证登录</a>
+                        <a href="${basePath }/customer/register">验证登录</a>
                     </div>
                     <div class="col-lg-7 text-right">
-                        还没有账号，<a href="${APP_PATH }/customer/register">立即注册</a>
+                        还没有账号，<a href="${basePath }/customer/register">立即注册</a>
                     </div>
 
                     <!-- <button class="btn btn-w-md btn-primary" onclick="localtion.href=register.html" type="button">注册</button>
@@ -127,9 +124,9 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="${APP_PATH }/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/bootstrap-notify.min.js"></script>
-<script type="text/javascript" src="${APP_PATH }/static/js/lightyear.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="${basePath }/static/js/lightyear.js"></script>
 <script type="text/javascript">
 
 
@@ -155,7 +152,7 @@
             var bool = false;
             $.ajax({
                 type:'post',
-                url:'${APP_PATH }/customer/getCustomerByTelephone',
+                url:'${basePath }/customer/getCustomerByTelephone',
                 datatype:'json',
                 contentType:"application/json;charset=utf-8",
                 data:JSON.stringify({telephone:username}),

@@ -65,4 +65,7 @@
     <insert id="register" parameterType="cn.earlymorning.netvideo.beans.Customer" useGeneratedKeys="true" keyProperty="customer.id">
         INSERT INTO TB_SYS_CUSTOMER(telephone,name,password,create_date,head_url) values(#{customer.telephone},#{customer.name},#{customer.password},#{customer.createDate},#{customer.headUrl} )
     </insert>
+    <update id="updCustomer" parameterType="cn.earlymorning.netvideo.beans.Customer">
+        update TB_SYS_CUSTOMER set password=#{password} where id = #{id}
+    </update>
 </mapper>

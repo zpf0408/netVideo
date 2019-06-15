@@ -137,7 +137,7 @@ public class CustomerController {
                             customerService.register(customer);
 
                             if(customer.getId()>0){
-                                session.removeAttribute("codeParam");
+
                                 mv.setViewName("redirect:/customer/registerSuccess");
                             }else{
                                 mv.addObject("telephone",telephone);
@@ -158,6 +158,8 @@ public class CustomerController {
         }else{
             mv.setViewName("/customer/register");
         }
+		//删除session中验证码
+        session.removeAttribute("codeParam");
 		return mv;
 	}
 
@@ -218,14 +220,38 @@ public class CustomerController {
         }
 	    List<CourseType> courseTypes = courseTypeService.getAlls();
 	    mv.addObject("courseTypes",courseTypes);
+
 	    mv.setViewName("/customer/personInfo");
 	    return mv;
     }
 
     @RequestMapping("/updPassword")
-    public ModelAndView updPassword(){
+    public ModelAndView updPassword(@RequestParam(value = "password" , required = false) String password,@RequestParam(value = "npassword" , required = false) String npassword,
+                                    @SessionAttribute("customer") Customer customer){
 	    ModelAndView mv = new ModelAndView();
-	    mv.setViewName("/customer/updPassword");
+	    if(customer==null){
+	        mv.setViewName("redirect:/customer/logout");
+        }else{
+            if(password==null&&npassword==null||"".equals(password)&&"".equals(npassword)){
+
+                mv.setViewName("/customer/updPassword");
+            }else{
+                String basePwd = JavaBase64.baseEncode(password);
+                if(basePwd.equals(customer.getPassword())){
+                    customer.setPassword(basePwd);
+                    Integer i = customerService.updCustomer(customer);
+                    if(i>0){
+                        mv.setViewName("/customer/updPwdSuccess");
+                    }else{
+                        mv.addObject("error","修改密码错误");
+                        mv.setViewName("/customer/updPassword");
+                    }
+                }
+            }
+        }
+        List<CourseType> courseTypes = courseTypeService.getAlls();
+        mv.addObject("courseTypes",courseTypes);
+
 	    return mv;
     }
 

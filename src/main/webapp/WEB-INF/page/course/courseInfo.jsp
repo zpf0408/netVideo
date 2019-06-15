@@ -131,7 +131,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="${basePath }/course/learning"><i class="mdi mdi-account"></i> 个人中心</a></li>
-                        <li><a href="${basePath }/customer/updCustomer"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
+                        <li><a href="${basePath }/customer/updPassword"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
                         </li>
                         <li><a href="${basePath }/course/learning"><i class="mdi mdi-comment-alert-outline"></i> 系统通知
                             <span class="badge">4</span></a>
@@ -173,14 +173,14 @@
                     </div>
                 </div>
                 <div class="col-lg-3 text-center example-icons" style="margin-top: 30px;">
-                    <div><a href="javascript:void(0)" onclick="collect()"><i class="mdi ${favorite==null?'mdi mdi-heart-outline':'mdi-heart'}" id="favorite"
+                    <div><a href="javascript:void(0);" onclick="collect()"><i class="mdi ${favorite==null?'mdi mdi-heart-outline':'mdi-heart'}" id="favorite"
                                                          data-toggle="tooltip" data-placement="top" title="${favorite==null?'收藏':'取消收藏'}"></i></a>
                     </div>
                     <div><a href="javascript:void(0)"><i class="mdi mdi-share-variant" data-toggle="tooltip"
                                                          data-placement="top" title="分享"></i></a></div>
                 </div>
                 <div class="col-lg-3 text-left mdi-verified" style="margin-top: 35px;">
-                    <button class="btn btn-w-md btn-round btn-primary" id="btn01" >
+                    <button class="btn btn-w-md btn-round btn-primary" id="btn02" >
                         <c:choose>
                             <c:when test="${courseLearn==null}">
                                 加入学习
@@ -294,7 +294,7 @@
 <script type="text/javascript">
 
     $(function () {
-        $("#btn01").click(function(){
+        $("#btn02").click(function(){
             var cou = "${courseLearn}";
             if($.isEmptyObject($.trim(cou))){
                 window.location.href="${basePath}/course/learn/${course.courseId}";
@@ -302,7 +302,7 @@
                 window.location.href="${basePath }/video/${videos.get(0).videoId}";
             }
         });
-    })
+    });
     function collect(){
         var customerId = "${sessionScope.customer.id}";
         var courseId = "${course.courseId}";

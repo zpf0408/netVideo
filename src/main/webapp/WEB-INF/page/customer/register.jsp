@@ -18,7 +18,7 @@
         pageContext.setAttribute("APP_PATH", request.getContextPath());
 
     %>
-    <link rel="icon" href="favicon.ico" type="image/ico">
+    <link rel="icon" href="${basePath}/static/icons/favicon.ico" type="image/ico">
     <link href="${basePath}/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/static/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="${basePath}/static/css/animate.css" rel="stylesheet">
@@ -80,7 +80,7 @@
                     <span class="mdi mdi-account form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="form-group has-feedback feedback-left">
-                    <input type="password" placeholder="请输入登录密码(字母和数字8-12位)" class="form-control" id="password" name="password" form="form1" />
+                    <input type="password" placeholder="请输入登录密码(字母或数字或字符6-12位)" class="form-control" id="password" name="password" form="form1" />
                     <span class="mdi mdi-lock form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="form-group has-feedback feedback-left row">
@@ -298,7 +298,7 @@
             return;
         } else {
             time--;
-            $('#identifyBtn').text(time);
+            $('#identifyBtn').text(time + 's');
         }
         setTimeout(function() {
             getRandomCode();

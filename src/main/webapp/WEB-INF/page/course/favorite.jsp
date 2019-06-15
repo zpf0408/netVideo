@@ -112,11 +112,11 @@
 
                         </li>
                         <li class="nav nav-subnav active">
-                            <a href="${basePath }/favorite"><i class="mdi mdi-file-outline"></i> 个人收藏</a>
+                            <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 个人收藏</a>
 
                         </li>
                         <li class="nav nav-subnav">
-                            <a href="${basePath }/customer/retrievePwd"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
+                            <a href="${basePath }/customer/updPassword"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
 
                         </li>
                         <li class="nav nav-subnav">

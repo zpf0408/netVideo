@@ -7,17 +7,14 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/base.jsp" %>
-<%
-    pageContext.setAttribute("APP_PATH", request.getContextPath());
 
-%>
 <!DOCTYPE html>
 <html lang="zh">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>个人信息</title>
+    <title>修改密码</title>
     <link rel="icon" href="${basePath }/static/icons/favicon.ico" type="image/ico">
 
     <link href="${basePath }/static/css/bootstrap.min.css" rel="stylesheet">
@@ -27,8 +24,7 @@
     <!--时间选择插件-->
     <link rel="stylesheet" href="${basePath }/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
     <!--日期选择插件-->
-    <link rel="stylesheet" href="${basePath}/static/js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
-
+    <link rel="stylesheet" href="${basePath }/static/js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
 
 </head>
 
@@ -78,7 +74,7 @@
 
                 <li class="dropdown dropdown-profile">
                     <a href="javascript:void(0)" data-toggle="dropdown">
-                        <img class="img-avatar img-avatar-48 m-r-10" src="${APP_PATH }/static/images/users/${sessionScope.customer.headUrl}" alt="" />
+                        <img class="img-avatar img-avatar-48 m-r-10" src="${basePath }/static/images/users/${sessionScope.customer.headUrl}" alt="" />
                         <span>${sessionScope.customer.name} <span class="caret"></span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -105,21 +101,21 @@
                     <ul class="nav nav-drawer">
 
                         <li class="nav nav-subnav">
-                            <a href="${APP_PATH }/course/learning"><i class="mdi mdi-server"></i> 个人课程</a>
+                            <a href="${basePath }/course/learning"><i class="mdi mdi-server"></i> 个人课程</a>
                         </li>
                         <li class="nav nav-subnav">
-                            <a href="${APP_PATH }/customer/personInfo"><i class="mdi mdi-account-card-details"></i> 个人信息</a>
+                            <a href="${basePath }/customer/personInfo"><i class="mdi mdi-account-card-details"></i> 个人信息</a>
                         </li>
                         <li class="nav nav-subnav">
-                            <a href="${APP_PATH }/favorite"><i class="mdi mdi-file-outline"></i> 个人收藏</a>
+                            <a href="${basePath }/favorite"><i class="mdi mdi-file-outline"></i> 个人收藏</a>
 
                         </li>
                         <li class="nav nav-subnav active">
-                            <a href="${APP_PATH}/course/favorite"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
+                            <a href="javascript:void(0)"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
 
                         </li>
                         <li class="nav nav-subnav">
-                            <a href="${APP_PATH }/customer/personInfo"><i class="mdi mdi-currency-cny"></i> 会员中心</a>
+                            <a href="${basePath }/customer/personInfo"><i class="mdi mdi-currency-cny"></i> 会员中心</a>
 
                         </li>
                     </ul>
@@ -129,10 +125,25 @@
         <div class="col-xs-10">
 
             <div class="card-header"><h4>修改密码</h4></div>
-            <div class="card-body">
+            <div class="card-body" style="height: 360px;">
+                <form action="${basePath}/customer/updPassword" method="post" id="form2" name="form2">
 
-
-
+                    <div class="form-group">
+                        <label for="example-nf-password">旧密码</label>
+                        <input class="form-control" type="password" id="password" form="form2" name="password" placeholder="请输入旧密码..">
+                    </div>
+                    <div class="form-group">
+                        <label for="example-nf-password">新密码</label>
+                        <input class="form-control" type="password" id="npassword" form="form2" name="npassword" placeholder="请输入登录密码(字母和数字8-12位)">
+                    </div>
+                    <div class="form-group">
+                        <label for="example-nf-password">确认新密码</label>
+                        <input class="form-control" type="password" id="npassword1" form="form2" name="npassword1" placeholder="请输入新密码..">
+                    </div>
+                    <div class="form-group">
+                        <input type="button" class="btn btn-primary" id="btn02" value="确定" form="form2"  />
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -146,20 +157,44 @@
 <script type="text/javascript" src="${basePath }/static/js/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/lightyear.js"></script>
 
-<!--图表插件-->
-<script type="text/javascript" src="${basePath }/static/js/Chart.js"></script>
 
-
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datetimepicker/moment.min.js"></script>
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
-<!--日期选择插件-->
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="${basePath }/static/js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/main.min.js"></script>
 <script type="text/javascript" src="${basePath }/static/js/search.js"></script>
 <script type="text/javascript">
+ $(function(){
+     var err = '${error}';
+     if(err!=null&&err!=''){
+         lightyear.notify(err, 'danger');
+     }
 
+     $("#btn02").click(function(){
+         var password = $("#password").val();
+         var npassword =  $("#npassword").val();
+         var npassword1 =  $("#npassword1").val();
+         if($.isEmptyObject($.trim(password))){
+             lightyear.notify('旧密码不能为空！', 'danger');
+             return;
+         }
+         if($.isEmptyObject($.trim(npassword))){
+             lightyear.notify('新密码不能为空！', 'danger');
+             return;
+         }
+         if($.isEmptyObject($.trim(npassword1))){
+             lightyear.notify('新密码不能为空！', 'danger');
+             return;
+         }
+         if(npassword!=npassword1){
+             lightyear.notify('两个新密码不同！', 'danger');
+             return;
+         }
+         var pwdReg = /^\w{6,12}$/;
+         if(pwdReg.test($.trim(npassword))==false||pwdReg.test($.trim(npassword1))==false){
+             lightyear.notify('新密码格式错误！', 'danger');
+             return;
+         }
+         $("#form2").submit();
+     })
+ })
 </script>
 </body>
 </html>

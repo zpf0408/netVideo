@@ -44,5 +44,8 @@ public class CustomerService {
 
 		return customers;
 	}
-
+	public Integer updCustomer(Customer customer){
+		Integer i = customerMapper.updCustomer(customer);
+		return i;
+	}
 }

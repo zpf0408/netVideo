@@ -61,7 +61,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li> <a href="${basePath }/course/learning" target="_blank"><i class="mdi mdi-account"></i> 个人中心</a> </li>
-                                <li> <a href="${basePath }/customer/personInfo" target="_blank"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
+                                <li> <a href="${basePath }/customer/updPassword" target="_blank"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
                                 <li> <a href="${basePath }/customer/personInfo" target="_blank"><i class="mdi mdi-comment-alert-outline"></i> 系统通知 <span class="badge">4</span></a>
                                 </li>
                                 <li> <a href="${basePath }/customer/logout"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>

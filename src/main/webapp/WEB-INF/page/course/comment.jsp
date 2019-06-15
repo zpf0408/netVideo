@@ -7,10 +7,7 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/base.jsp" %>
-<%
-    pageContext.setAttribute("APP_PATH", request.getContextPath());
 
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,7 +108,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <c:forEach items="${courseTypes}" var="vts">
-                            <li><a href="${APP_PATH }/course/courseDisplay/${vts.typeId}">${vts.typeName}</a></li>
+                            <li><a href="${basePath }/course/courseDisplay/${vts.typeId}">${vts.typeName}</a></li>
                         </c:forEach>
                     </ul>
                 </li>
@@ -131,7 +128,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="${basePath }/course/learning"><i class="mdi mdi-account"></i> 个人中心</a></li>
-                        <li><a href="${basePath }/customer/updCustomer"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
+                        <li><a href="${basePath }/customer/updPassword"><i class="mdi mdi-lock-outline"></i> 修改密码</a>
                         </li>
                         <li><a href="${basePath }/course/learning"><i class="mdi mdi-comment-alert-outline"></i> 系统通知
                             <span class="badge">4</span></a>
@@ -173,14 +170,14 @@
                     </div>
                 </div>
                 <div class="col-lg-3 text-center example-icons" style="margin-top: 30px;">
-                    <div><a href="javascript:void(0)" onclick="collect()"><i class="mdi ${favorite==null?'mdi mdi-heart-outline':'mdi-heart'}" id="favorite"
+                    <div><a href="javascript:void(0);" onclick="collect()"><i class="mdi ${favorite==null?'mdi mdi-heart-outline':'mdi-heart'}" id="favorite"
                                                                              data-toggle="tooltip" data-placement="top" title="${favorite==null?'收藏':'取消收藏'}"></i></a>
                     </div>
                     <div><a href="javascript:void(0)"><i class="mdi mdi-share-variant" data-toggle="tooltip"
                                                          data-placement="top" title="分享"></i></a></div>
                 </div>
                 <div class="col-lg-3 text-left mdi-verified" style="margin-top: 35px;">
-                    <button class="btn btn-w-md btn-round btn-primary" onclick="javascript:window.location.href='${basePath}/course/learn/${course.courseId}'">
+                    <button class="btn btn-w-md btn-round btn-primary" id="btn02">
                         <c:choose>
                             <c:when test="${courseLearn==null}">
                                 加入学习
@@ -272,40 +269,50 @@
 <script type="text/javascript" src="${basePath }/static/js/search.js"></script>
 <script type="text/javascript">
     $(function () {
-
-    })
-    function collect(){
-        var customerId = "${sessionScope.customer.id}";
-        var courseId = "${course.courseId}";
-        $.ajax({
-            type:'post',
-            url:'${basePath }/collect',
-            datatype:'json',
-            contentType:"application/json;charset=utf-8",
-            data:JSON.stringify({customer:{id:customerId},course:{courseId:courseId}}),
-            async:false,
-            beforeSend:function(){
-                //启动页面加载层
-                lightyear.loading('show');
-            },
-            success:function(messageResult){
-                //隐藏加载层
-                lightyear.loading('hide');
-                if(messageResult.code=='0'){
-                    $("#favorite").attr("class","mdi mdi-heart");
-                }else if(messageResult.code=='2'){
-                    $("#favorite").attr("class","mdi mdi-heart-outline");
-                }else if(messageResult.code=='1'){
-                    lightyear.notify(messageResult.message, 'danger');
-                }
-
-            },
-            error:function(){
-                lightyear.loading('hide');
-                lightyear.notify('操作失败！！！', 'danger');
-
+        $("#btn02").click(function(){
+            var cou = "${courseLearn}";
+            if($.isEmptyObject($.trim(cou))){
+                window.location.href="${basePath}/course/learn/${course.courseId}";
+            }else{
+                window.location.href="${basePath }/video/${videos.get(0).videoId}";
             }
         });
-    }
+
+        function collect(){
+            var customerId = "${sessionScope.customer.id}";
+            var courseId = "${course.courseId}";
+            $.ajax({
+                type:'post',
+                url:'${basePath }/collect',
+                datatype:'json',
+                contentType:"application/json;charset=utf-8",
+                data:JSON.stringify({customer:{id:customerId},course:{courseId:courseId}}),
+                async:false,
+                beforeSend:function(){
+                    //启动页面加载层
+                    lightyear.loading('show');
+                },
+                success:function(messageResult){
+                    //隐藏加载层
+                    lightyear.loading('hide');
+                    if(messageResult.code=='0'){
+                        $("#favorite").attr("class","mdi mdi-heart");
+                    }else if(messageResult.code=='2'){
+                        $("#favorite").attr("class","mdi mdi-heart-outline");
+                    }else if(messageResult.code=='1'){
+                        lightyear.notify(messageResult.message, 'danger');
+                    }
+
+                },
+                error:function(){
+                    lightyear.loading('hide');
+                    lightyear.notify('操作失败！！！', 'danger');
+
+                }
+            });
+        }
+
+    });
+
 </script>
 </html>
